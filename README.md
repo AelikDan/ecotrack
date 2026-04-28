@@ -115,3 +115,7 @@ técnico em tecnologia ambiental.
 | RNF-005 | O pacote Provider deve ser utilizado para gerenciamento de estado global | Arquitetura | Alta |
 | RNF-006 | O Provider deve armazenar e controlar: lista de hábitos pendentes, lista de hábitos concluídos, tela selecionada no BottomNavigationBar e dados do Dashboard | Arquitetura | Alta |
 | RNF-007 | O tema claro/escuro deve ser controlado via Provider (opcional) | Arquitetura | Baixa |
+
+# 4. Ademais
+
+Link para o protótipo de média fidelidade no figma: https://www.figma.com/design/BFGWr9HBL0ezb9KSczAy0s/EcoTrack?node-id=0-1&p=f&t=d7WGeuuxEgThOjn9-0
