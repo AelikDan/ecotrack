@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Arquivo na pasta que deve conter os widgets reutilizáveis (habito_card.dart e dashboard_card.dart). Aparece fechada na imagem mas existe no projeto.
+
 class DashboardCard extends StatelessWidget {
   final String titulo;
   final String valor;

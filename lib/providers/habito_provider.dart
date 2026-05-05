@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../model/habito.dart';
 
+
+// Cérebro do app. Armazena e gerencia o estado global: listas de pendentes/concluídos, pontuação, tema. Notifica as telas quando algo muda.
+
 class HabitoProvider extends ChangeNotifier {
   // Lista de hábitos pendentes
   final List<Habito> _pendentes = [
@@ -13,12 +16,9 @@ class HabitoProvider extends ChangeNotifier {
 
   final List<Habito> _concluidos = [];
 
-  bool _modoEscuro = false;
-
   List<Habito> get pendentes => _pendentes;
   List<Habito> get concluidos => _concluidos;
-  bool get modoEscuro => _modoEscuro;
-
+  
   // Pontuação: 20 pontos por hábito concluído
   int get pontuacao => _concluidos.length * 20;
 
@@ -46,9 +46,11 @@ class HabitoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Alternar tema
-  void alternarTema() {
-    _modoEscuro = !_modoEscuro;
-    notifyListeners();
-  }
+  void desmarcarHabito(Habito habito) {
+  _concluidos.remove(habito);
+  habito.concluido = false;
+  _pendentes.add(habito);
+  notifyListeners();
 }
+}
+

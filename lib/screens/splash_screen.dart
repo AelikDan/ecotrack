@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'habitos_screen.dart';
 
+//Primeira tela que o usuário vê. Tem nome do app, descrição, ícone e botão para entrar.
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'providers/habito_provider.dart';
 import 'screens/splash_screen.dart';
 
+//Ponto de entrada do app. Inicializa o Provider e define qual tela abre primeiro (SplashScreen).
 void main() {
   runApp(
     ChangeNotifierProvider(
@@ -22,7 +23,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'EcoTrack',
           debugShowCheckedModeBanner: false,
-          themeMode: provider.modoEscuro ? ThemeMode.dark : ThemeMode.light,
           theme: ThemeData(
             colorSchemeSeed: Colors.green,
             brightness: Brightness.light,

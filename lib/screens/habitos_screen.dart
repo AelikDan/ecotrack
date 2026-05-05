@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import '../providers/habito_provider.dart';
 import '../widgets/habito_card.dart';
 import 'dashboard_screen.dart';
+import 'splash_screen.dart';
+
+//Tela principal. Contém AppBar, Drawer, BottomNavigationBar e o TabBarView com as duas abas (Pendentes e Concluídos).
 
 class HabitosScreen extends StatelessWidget {
   const HabitosScreen({super.key});
@@ -17,7 +20,6 @@ class HabitosScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('EcoTrack'),
           actions: [
-            // Indicador de progresso
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Center(
@@ -35,7 +37,6 @@ class HabitosScreen extends StatelessWidget {
           ),
         ),
 
-        // Drawer
         drawer: Drawer(
           child: ListView(
             children: [
@@ -62,21 +63,10 @@ class HabitosScreen extends StatelessWidget {
                 title: const Text('Hábitos'),
                 onTap: () => Navigator.pop(context),
               ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Configurações'),
-                onTap: () => Navigator.pop(context),
-              ),
-              ListTile(
-                leading: const Icon(Icons.help_outline),
-                title: const Text('Ajuda'),
-                onTap: () => Navigator.pop(context),
-              ),
             ],
           ),
         ),
 
-        // BottomNavigationBar
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (index) {
@@ -84,6 +74,12 @@ class HabitosScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const DashboardScreen()),
+              );
+            } else if (index == 2) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const SplashScreen()),
+                (route) => false,
               );
             }
           },
@@ -94,10 +90,8 @@ class HabitosScreen extends StatelessWidget {
           ],
         ),
 
-        // TabBarView com as duas abas
         body: TabBarView(
           children: [
-            // Aba Pendentes
             provider.pendentes.isEmpty
                 ? const Center(child: Text('Nenhum hábito pendente!'))
                 : ListView.builder(
@@ -111,7 +105,6 @@ class HabitosScreen extends StatelessWidget {
                     },
                   ),
 
-            // Aba Concluídos
             provider.concluidos.isEmpty
                 ? const Center(child: Text('Nenhum hábito concluído ainda.'))
                 : ListView.builder(

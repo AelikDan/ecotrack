@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import '../providers/habito_provider.dart';
 import '../widgets/dashboard_card.dart';
 import 'habitos_screen.dart';
+import 'splash_screen.dart'; // importar
+
+//Tela de métricas. Exibe os cards em GridView com hábitos concluídos, pendentes, pontuação e meta semanal — todos atualizados pelo Provider.
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -46,16 +49,6 @@ class DashboardScreen extends StatelessWidget {
                 );
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Configurações'),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.help_outline),
-              title: const Text('Ajuda'),
-              onTap: () => Navigator.pop(context),
-            ),
           ],
         ),
       ),
@@ -68,6 +61,12 @@ class DashboardScreen extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (_) => const HabitosScreen()),
             );
+          } else if (index == 2) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const SplashScreen()),
+              (route) => false,
+            );
           }
         },
         items: const [
@@ -77,6 +76,7 @@ class DashboardScreen extends StatelessWidget {
         ],
       ),
 
+      //Cards do dashboard
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: GridView.count(
@@ -84,6 +84,23 @@ class DashboardScreen extends StatelessWidget {
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
           children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Bem vindo ao seu DashBoard!",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ],
+            ),
+            const SizedBox(height: 8),
             DashboardCard(
               titulo: 'Hábitos Concluídos',
               valor: '${provider.concluidos.length}',
